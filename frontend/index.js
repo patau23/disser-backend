@@ -19,7 +19,7 @@ function App() {
 
             const offer = await pc.createOffer();
             await pc.setLocalDescription(offer);
-            const resp = await fetch('http://localhost:5000/api/offer', {
+            const resp = await fetch('http://127.0.0.1:5000/api/offer', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ sdp: pc.localDescription })
@@ -31,10 +31,9 @@ function App() {
     }, []);
 
     React.useEffect(() => {
-        fetch('http://localhost:5000/api/test', {       
-            method: 'POST',
+        fetch('http://127.0.0.1:5000/api/test', {
+            method: 'GET',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ model: 'mtcnn' })
         }).then(res => res.json()).then(data => {
             console.log('Model created:', data);
         }).catch(err => {
